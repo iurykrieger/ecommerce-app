@@ -1,0 +1,471 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <!-- breadcrumb start-->
+  <section class="breadcrumb breadcrumb_bg">
+      <div class="container">
+          <div class="row justify-content-center">
+              <div class="col-lg-12">
+                  <div class="breadcrumb_iner">
+                      <div class="breadcrumb_iner_item">
+                          <p>Home / Products / {{ product.id }}</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+  <!-- breadcrumb start-->
+
+  <!--================Single Product Area =================-->
+  <div class="product_image_area section_padding">
+    <div class="container">
+      <div class="row s_product_inner">
+        <div class="col-lg-5">
+          <div class="product_slider_img">
+            <div id="vertical">
+              <div data-thumb="{{ product.images.default }}">
+                <img src="{{ product.images.default }}" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5 offset-lg-1">
+          <div class="s_product_text">
+            <h3>{{ product.name }}</h3>
+            <h3><strike>$ {{ product.oldPrice }}</strike></h3>
+            <h2>$ {{ product.price }}</h2>
+            <ul class="list">
+              <li>
+                <a class="active" href="#">
+                  <span>Category</span>: {{ product.categories[0].name }}
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span>Availibility</span>: {{ product.status }}
+                </a>
+              </li>
+            </ul>
+            <div class="card_area">
+              <form method="post">
+                <div class="product_count d-inline-block">
+                  <span class="inumber-decrement"> <i class="ti-minus"></i></span>
+                  <input name="quantity" class="input-number" type="text" value="1" min="0" max="10">
+                  <span class="number-increment"> <i class="ti-plus"></i></span>
+                </div>
+                <div class="add_to_cart">
+                  <button type="submit" class="btn_3" formaction="/cart/add/{{ product.id }}">add to cart</button>
+                  <button type="submit" class="like_us" formaction="/wishlist/add/{{ product.id}}"><i class="ti-heart"></i></button>
+                </div>
+              </form>
+              
+              <div class="social_icon">
+                  <a href="#" class="fb"><i class="ti-facebook"></i></a>
+                  <a href="#" class="tw"><i class="ti-twitter-alt"></i></a>
+                  <a href="#" class="li"><i class="ti-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--================End Single Product Area =================-->
+
+  <!--================Product Description Area =================-->
+  <section class="product_description_area">
+    <div class="container">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+            aria-selected="true">Description</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+            aria-selected="false">Comments</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"
+            aria-selected="false">Reviews</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+          <div class="s_product_text">
+            <p>{{ product.description|safe }}</p>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="comment_list">
+                <div class="review_item">
+                  <div class="media">
+                    <div class="d-flex">
+                      <img src="{{ url_for('static', filename='img/product/single-product/review-1.png') }}" alt="" />
+                    </div>
+                    <div class="media-body">
+                      <h4>Blake Ruiz</h4>
+                      <h5>12th Feb, 2017 at 05:56 pm</h5>
+                      <a class="reply_btn" href="#">Reply</a>
+                    </div>
+                  </div>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo
+                  </p>
+                </div>
+                <div class="review_item reply">
+                  <div class="media">
+                    <div class="d-flex">
+                      <img src="{{ url_for('static', filename='img/product/single-product/review-2.png') }}" alt="" />
+                    </div>
+                    <div class="media-body">
+                      <h4>Blake Ruiz</h4>
+                      <h5>12th Feb, 2017 at 05:56 pm</h5>
+                      <a class="reply_btn" href="#">Reply</a>
+                    </div>
+                  </div>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo
+                  </p>
+                </div>
+                <div class="review_item">
+                  <div class="media">
+                    <div class="d-flex">
+                      <img src="{{ url_for('static', filename='img/product/single-product/review-3.png') }}" alt="" />
+                    </div>
+                    <div class="media-body">
+                      <h4>Blake Ruiz</h4>
+                      <h5>12th Feb, 2017 at 05:56 pm</h5>
+                      <a class="reply_btn" href="#">Reply</a>
+                    </div>
+                  </div>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="review_box">
+                <h4>Post a comment</h4>
+                <form class="row contact_form" action="contact_process.php" method="post" id="contactForm"
+                  novalidate="novalidate">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <input type="text" class="form-control" id="name" name="name" placeholder="Your Full name" />
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" />
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <input type="text" class="form-control" id="number" name="number" placeholder="Phone Number" />
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <textarea class="form-control" name="message" id="message" rows="1"
+                        placeholder="Message"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-12 text-right">
+                    <button type="submit" value="submit" class="btn_3">
+                      Submit Now
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="row total_rate">
+                <div class="col-6">
+                  <div class="box_total">
+                    <h5>Overall</h5>
+                    <h4>4.0</h4>
+                    <h6>(03 Reviews)</h6>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="rating_list">
+                    <h3>Based on 3 Reviews</h3>
+                    <ul class="list">
+                      <li>
+                        <a href="#">5 Star
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i> 01</a>
+                      </li>
+                      <li>
+                        <a href="#">4 Star
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i> 01</a>
+                      </li>
+                      <li>
+                        <a href="#">3 Star
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i> 01</a>
+                      </li>
+                      <li>
+                        <a href="#">2 Star
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i> 01</a>
+                      </li>
+                      <li>
+                        <a href="#">1 Star
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i> 01</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="review_list">
+                <div class="review_item">
+                  <div class="media">
+                    <div class="d-flex">
+                      <img src="{{ url_for('static', filename='img/product/single-product/review-1.png') }}" alt="" />
+                    </div>
+                    <div class="media-body">
+                      <h4>Blake Ruiz</h4>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                    </div>
+                  </div>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo
+                  </p>
+                </div>
+                <div class="review_item">
+                  <div class="media">
+                    <div class="d-flex">
+                      <img src="{{ url_for('static', filename='img/product/single-product/review-2.png') }}" alt="" />
+                    </div>
+                    <div class="media-body">
+                      <h4>Blake Ruiz</h4>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                    </div>
+                  </div>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo
+                  </p>
+                </div>
+                <div class="review_item">
+                  <div class="media">
+                    <div class="d-flex">
+                      <img src="{{ url_for('static', filename='img/product/single-product/review-3.png') }}" alt="" />
+                    </div>
+                    <div class="media-body">
+                      <h4>Blake Ruiz</h4>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                    </div>
+                  </div>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="review_box">
+                <h4>Add a Review</h4>
+                <p>Your Rating:</p>
+                <ul class="list">
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-star"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-star"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-star"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-star"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-star"></i>
+                    </a>
+                  </li>
+                </ul>
+                <p>Outstanding</p>
+                <form class="row contact_form" action="contact_process.php" method="post" novalidate="novalidate">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <input type="text" class="form-control" name="name" placeholder="Your Full name" />
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <input type="email" class="form-control" name="email" placeholder="Email Address" />
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <input type="text" class="form-control" name="number" placeholder="Phone Number" />
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <textarea class="form-control" name="message" rows="1" placeholder="Review"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-12 text-right">
+                    <button type="submit" value="submit" class="btn_3">
+                      Submit Now
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--================End Product Description Area =================-->
+
+  <!-- product_list part start-->
+  <section class="product_list best_seller padding_bottom">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-12">
+          <div class="section_tittle text-center">
+            <h2>Best Sellers</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-lg-3 col-sm-6">
+              <div class="single_category_product">
+                  <div class="single_category_img">
+                      <img src="{{ url_for('static', filename='img/category/category_2.png') }}" alt="">
+                      <div class="category_social_icon">
+                          <ul>
+                              <li><a href="#"><i class="ti-heart"></i></a></li>
+                              <li><a href="#"><i class="ti-bag"></i></a></li>
+                          </ul>
+                      </div>
+                      <div class="category_product_text">
+                          <a href="single-product.html"><h5>Long Sleeve TShirt</h5></a>
+                          <p>$150.00</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+              <div class="single_category_product">
+                  <div class="single_category_img">
+                      <img src="{{ url_for('static', filename='img/category/category_3.png') }}" alt="">
+                      <div class="category_social_icon">
+                          <ul>
+                              <li><a href="#"><i class="ti-heart"></i></a></li>
+                              <li><a href="#"><i class="ti-bag"></i></a></li>
+                          </ul>
+                      </div>
+                      <div class="category_product_text">
+                          <a href="single-product.html"><h5>Long Sleeve TShirt</h5></a>
+                          <p>$150.00</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+              <div class="single_category_product">
+                  <div class="single_category_img">
+                      <img src="{{ url_for('static', filename='img/category/category_4.png') }}" alt="">
+                      <div class="category_social_icon">
+                          <ul>
+                              <li><a href="#"><i class="ti-heart"></i></a></li>
+                              <li><a href="#"><i class="ti-bag"></i></a></li>
+                          </ul>
+                      </div>
+                      <div class="category_product_text">
+                          <a href="single-product.html"><h5>Long Sleeve TShirt</h5></a>
+                          <p>$150.00</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+              <div class="single_category_product">
+                  <div class="single_category_img">
+                      <img src="{{ url_for('static', filename='img/category/category_5.png') }}" alt="">
+                      <div class="category_social_icon">
+                          <ul>
+                              <li><a href="#"><i class="ti-heart"></i></a></li>
+                              <li><a href="#"><i class="ti-bag"></i></a></li>
+                          </ul>
+                      </div>
+                      <div class="category_product_text">
+                          <a href="single-product.html"><h5>Long Sleeve TShirt</h5></a>
+                          <p>$150.00</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </section>
+  <!-- product_list part end-->
+{% endblock %}
