@@ -1,13 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for, make_response
-from flask_pymongo import PyMongo
 from carts import update_cart_product, get_cart, build_cart_summary
 from products import get_products, get_product
-from transactions import create_transaction, validate_transaction
-from os import environ
+from transactions import create_transaction
 
 app = Flask(__name__)
-app.config["MONGO_URI"] = environ.get("MONGO_URI")
-app.mongo = PyMongo(app)
 
 @app.route("/", methods=["GET"])
 def index():
@@ -75,9 +71,6 @@ def transaction():
             "email": request.form.get("email")
         }
     )
-
-    validate_transaction(transaction)
-    transaction["cart"] = build_cart_summary(transaction.get("cart"))
 
     transaction_response = make_response(render_template("confirmation.html", transaction=transaction))
     transaction_response.set_cookie("cart_id", "")
